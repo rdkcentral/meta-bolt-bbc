@@ -1,0 +1,8 @@
+<manifest>
+  <remote name="rdkcentral" fetch="https://github.com/rdkcentral/"/>
+	
+  <!-- provides oipf shim layer -->
+  <project remote="rdkcentral" name="oipf-bbc" upstream="develop" revision="2b29edc00c704d151e7b7fe6e27cf77faa62d551" path="oipf-bbc"/>
+  <!-- provides bolt engineerring certificates for signing -->
+  <project remote="rdkcentral" name="bolt-engineering-certificates" upstream="develop" revision="7b4558732ebd19831059abdf2b98d437ced89f9c" path="bolt-engineering-certificates"/>
+</manifest>

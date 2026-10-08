@@ -1,0 +1,48 @@
+{
+  "id": "com.rdkcentral.bbc-iplayer",
+  "version": "0.4.2",
+  "versionName": "develop",
+  "name": "bbc-iplayer",
+  "packageType": "application",
+  "entryPoint": "--verbose --dev https://www.live.bbctvapps.co.uk/tap/iplayer",
+  "dependencies": {
+    "com.rdkcentral.wpe-bbc": "0.4.2",
+    "com.rdkcentral.bbc.resource.brcm-ref": "0.3.1"    
+  },
+  "permissions": [
+    "urn:rdk:permission:internet",
+    "urn:rdk:permission:firebolt",
+    "urn:rdk:permission:thunder",
+    "urn:rdk:permission:rialto"
+  ],
+  "configuration": {
+   "urn:rdk:config:overrides": {
+      "application": {
+        "options": [
+          {
+            "key": "customUserAgent",
+            "value": "<userAgent>"
+          },
+          {
+            "key": "userscripts",
+            "value": "/usr/share/oipf/oipf-bbc.js"
+          },
+          {
+            "key": "userstylesheets",
+            "value": "/usr/share/oipf/oipf-bbc.css"
+          }
+        ],
+       "envs": [
+         {
+           "key": "G_TLS_OPENSSL_CLIENT_CERT_PATH",
+           "value": "/usr/share/certificates/<bbc-iplayer-cert.pem>"
+         },
+         {
+           "key":"G_TLS_OPENSSL_CLIENT_CERT_KEY_PATH",
+           "value": "/usr/share/certificates/<bbc-iplayer-key.pem>"
+         }
+        ]
+      }
+    }
+  }
+}
