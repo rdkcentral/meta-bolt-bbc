@@ -25,7 +25,7 @@ cd meta-bolt-bbc
 ```
 
 ## Building WPE BBC runtime as bolt package
-Copy package-configs/com.rdkcentral.wpe-bbc.json to meta-bolt-wpe/package-configs and create WPE BBC runtime using below command
+Copy package-configs/com.rdkcentral.wpe-bbc.json, package-configs/wpe-bbc.bolt.json to meta-bolt-wpe/package-configs and create WPE BBC runtime using below command
 ```
 bolt make wpe-bbc --install
 ```

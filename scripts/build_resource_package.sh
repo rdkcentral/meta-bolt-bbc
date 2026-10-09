@@ -19,12 +19,13 @@
 #!/bin/bash
 if [ $# -ne 1 ]; then
     echo "Usage: $0 <platform>"
-    echo "<platform> shall be brcm-ref/rpi4 based on the platform"
+    echo "<platform> shall be brcm-ref"
     exit 1
 fi
 SCRIPTS_DIR=$(readlink -m "$(dirname "${BASH_SOURCE[0]}")")
 META_ROOT="$(dirname "$SCRIPTS_DIR")"
 CERTS_DIR="${META_ROOT}/deps/bolt-engineering-certificates"
+PACKAGE_DIR="$HOME/bolts"
 
 # Create directories to store BBC iPlayer and BBC Sounds related files
 RESOURCE_PACKAGE="${META_ROOT}/deps/com.rdkcentral.bbc.resource.$1"
@@ -64,6 +65,11 @@ ralfpack sign \
     --passphrase="RDKMRalf" \
     "$BOLT_FILE"
 echo "          Signed: $BOLT_FILE"
+
+
+# Copy the package to package directory
+cp $BOLT_FILE $PACKAGE_DIR
+echo "Copied the $BOLT_FILE to Package directory: $PACKAGE_DIR"
 
 echo "Bolt package generated"
 echo "==================================================================="

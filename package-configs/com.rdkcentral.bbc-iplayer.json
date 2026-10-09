@@ -1,13 +1,13 @@
 {
   "id": "com.rdkcentral.bbc-iplayer",
-  "version": "0.4.2",
+  "version": "0.5.0",
   "versionName": "develop",
   "name": "bbc-iplayer",
   "packageType": "application",
   "entryPoint": "--verbose --dev https://www.live.bbctvapps.co.uk/tap/iplayer",
   "dependencies": {
-    "com.rdkcentral.wpe-bbc": "0.4.2",
-    "com.rdkcentral.bbc.resource.brcm-ref": "0.3.1"    
+    "com.rdkcentral.wpe-bbc": "0.5.0",
+    "com.rdkcentral.bbc.resource.brcm-ref": "0.4.0"
   },
   "permissions": [
     "urn:rdk:permission:internet",
