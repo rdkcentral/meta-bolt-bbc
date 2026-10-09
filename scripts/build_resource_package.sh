@@ -30,13 +30,14 @@ PACKAGE_DIR="$HOME/bolts"
 # Create directories to store BBC iPlayer and BBC Sounds related files
 RESOURCE_PACKAGE_DIR="${META_ROOT}/deps/com.rdkcentral.bbc.resource.$1"
 echo "Resource package directory: $RESOURCE_PACKAGE_DIR"
+rm -rf "$RESOURCE_PACKAGE_DIR"
 mkdir -p $RESOURCE_PACKAGE_DIR $RESOURCE_PACKAGE_DIR/usr/share/certificates
 mkdir -p $RESOURCE_PACKAGE_DIR $RESOURCE_PACKAGE_DIR/usr/share/oipf
 
-if [ -z "$(find "$RESOURCE_PACKAGE_DIR/usr/share/certificates" -maxdepth 1 -type f -print -quit)" ]; then
-    cp -r $META_ROOT/deps/certificates $RESOURCE_PACKAGE_DIR/usr/share/
-    echo "Copied certificates"
-fi
+rm -rf "$RESOURCE_PACKAGE_DIR/usr/share/certificates"
+cp -r "$META_ROOT/deps/certificates" "$RESOURCE_PACKAGE_DIR/usr/share/"
+echo "Copied certificates"
+
 cp $META_ROOT/deps/oipf-bbc/dist/stb/oipf-bbc.js $META_ROOT/deps/oipf-bbc/dist/stb/oipf-bbc.css $RESOURCE_PACKAGE_DIR/usr/share/oipf/
 echo "Copied oipf related dependencies"
 
@@ -57,18 +58,23 @@ if [ -z "$BOLT_FILE" ]; then
     ls -la "$RESOURCE_PACKAGE_DIR"
     exit 1
 fi
-echo "          Generated package: $BOLT_FILE"
+echo "Generated package: $BOLT_FILE"
+
+echo "Copying to _signed variant ..."
+SIGNED_BOLT="${BOLT_FILE%.bolt}_signed.bolt"
+cp "$BOLT_FILE" "$SIGNED_BOLT"
+echo "Signed copy: $SIGNED_BOLT"
 
 echo "Signing with ralfpack..."
 ralfpack sign \
     --pkcs12="$CERTS_DIR/certs/com.rdkcentral.ralf.p12" \
     --passphrase="RDKMRalf" \
-    "$BOLT_FILE"
-echo "          Signed: $BOLT_FILE"
+    "$SIGNED_BOLT"
+echo "Signed: $SIGNED_BOLT"
 
 
 # Copy the package to package directory
-cp $BOLT_FILE $PACKAGE_DIR
+cp $SIGNED_BOLT "$PACKAGE_DIR/$BOLT_FILE"
 echo "Copied the $BOLT_FILE to Package directory: $PACKAGE_DIR"
 
 echo "Bolt package generated"

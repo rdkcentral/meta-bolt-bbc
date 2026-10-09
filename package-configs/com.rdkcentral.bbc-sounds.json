@@ -21,7 +21,7 @@
         "options": [
           {
             "key": "customUserAgent",
-            "value": "<userAgent>"
+            "value": "<user agent>"
           },
           {
             "key": "userscripts",
@@ -35,11 +35,11 @@
        "envs": [
          {
            "key": "G_TLS_OPENSSL_CLIENT_CERT_PATH",
-           "value": "/usr/share/certificates/<bbc-isounds-cert.pem>"
+           "value": "/usr/share/certificates/<bbc-sounds-cert.pem>"
          },
          {
            "key":"G_TLS_OPENSSL_CLIENT_CERT_KEY_PATH",
-           "value": "/usr/share/certificates/<bbc-isounds-key.pem>"
+           "value": "/usr/share/certificates/<bbc-sounds-key.pem>"
          }
         ]
       }

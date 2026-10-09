@@ -2,7 +2,7 @@
 
 Bitbake meta layer to build BBC iPlayer and BBC Sounds application.
 
-# Setup and building
+# Setup and building (Prerequisites)
 
 See [Setup and building](https://github.com/rdkcentral/meta-bolt-distro/blob/develop/README.md#setup-and-building)
 section in the [meta-bolt-distro](https://github.com/rdkcentral/meta-bolt-distro) documentation.
@@ -31,7 +31,7 @@ bolt make wpe-bbc --install
 ```
 
 ## Building BBC application as bolt package
-To create Bolt packages for BBC, ensure that the base package is available in the package store. Refer to the [building the base bolt package](https://github.com/rdkcentral/meta-bolt-distro?tab=readme-ov-file#building-the-base-bolt-package) section to generate the base package and set up the package store.
+To create bolt packages for BBC, ensure that the base package is available in the package store. Refer to the [building the base bolt package](https://github.com/rdkcentral/meta-bolt-distro?tab=readme-ov-file#building-the-base-bolt-package) section to generate the base package and set up the package store.
 
 Ensure that bolt and ralfpack tool is available in the $PATH environment variable using export command as below
 ```
@@ -45,18 +45,18 @@ Fetch dependencies to build the bolt package
 
 Copy the BBC certificates(private and public key) to deps/certificates directory
 
-Update the appropriate <userAgent> and certificate (<bbc-iplayer-cert.pem>, <bbc-iplayer-key.pem>, <bbc-isounds-cert.pem> and <bbc-isounds-key.pem>) in the package-configs/com.rdkcentral.bbc-iplayer.json and package-configs/com.rdkcentral.bbc-sounds.json
+Update the appropriate `<user agent>` and certificate placeholders (`<bbc-iplayer-cert.pem>`, `<bbc-iplayer-key.pem>`, `<bbc-sounds-cert.pem>` and `<bbc-sounds-key.pem>`) in `package-configs/com.rdkcentral.bbc-iplayer.json` and `package-configs/com.rdkcentral.bbc-sounds.json`.
 
-Build the resource package (which contains certificates and oipf related js runtime files)
+Build the resource package(which contains certificates and oipf related js runtime files)
 ```
 ./scripts/build_resource_package.sh brcm-ref
 ```
 
 Build the bolt package
 ```
-./scripts/build_bolt_package.sh <BBC_APP_NAME>
+./scripts/build_bolt_package.sh <BBC_APPLICATION_NAME>
 ```
-<BBC_APP_NAME> shall be bbc-iplayer or bbc-sounds
+<BBC_APPLICATION_NAME> shall be bbc-iplayer or bbc-sounds
 
 ## Running BBC bolt packages on device
 
@@ -67,6 +67,8 @@ bolt push <remote> com.rdkcentral.base+0.4.0.bolt
 bolt push <remote> com.rdkcentral.bbc.resource.brcm-ref+0.4.0.bolt
 bolt push <remote> com.rdkcentral.wpe-bbc+0.5.0.bolt
 bolt push <remote> com.rdkcentral.bbc-iplayer+0.5.0.bolt
+bolt push <remote> com.rdkcentral.bbc-sounds+0.5.0.bolt
 
-bolt run <remote> com.rdkcentral.bbc-iplayer+0.5.0.bolt
+bolt run <remote> com.rdkcentral.bbc-iplayer+0.5.0.bolt [To launch BBC iPlayer application]
+bolt run <remote> com.rdkcentral.bbc-sounds+0.5.0.bolt [To launch BBC Sounds application]
 ```

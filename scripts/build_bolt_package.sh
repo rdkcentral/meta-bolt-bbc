@@ -47,7 +47,7 @@ cd $APP_DIR
 bolt make $1 --force-install --key=$CERTS_DIR/certs/com.rdkcentral.ralf-private.key --cert=$CERTS_DIR/certs/com.rdkcentral.ralf-public.crt
 BOLT_FILE=$(ls *.bolt 2>/dev/null | grep -v '_signed' | head -1)
 if [ -z "$BOLT_FILE" ]; then
-    echo "ERROR: No .bolt file found in $APP_DIR after bolt pack."
+    echo "ERROR: No .bolt file found in $APP_DIR after bolt make."
     echo "       Directory listing:"
     ls -la "$APP_DIR"
     exit 1
