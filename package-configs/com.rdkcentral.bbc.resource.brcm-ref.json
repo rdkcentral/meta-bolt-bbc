@@ -1,0 +1,15 @@
+{
+  "id": "com.rdkcentral.bbc.resource.brcm-ref",
+  "version": "0.4.0",
+  "versionName": "develop",
+  "name": "Resource Layer",
+  "packageType": "resource",
+  "packageSpecifier": "clientCert",
+  "entryPoint": "/usr/libexec/DobbyInit", 
+  "dependencies": {
+  },
+  "permissions": [
+  ],
+  "configuration": {
+  }
+}

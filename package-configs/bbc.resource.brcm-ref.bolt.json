@@ -1,0 +1,6 @@
+{
+  "config": "com.rdkcentral.bbc.resource.brcm-ref.json",
+  "direct": {
+    "empty": true
+  }  
+}
