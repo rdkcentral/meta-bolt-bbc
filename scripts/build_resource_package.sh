@@ -33,10 +33,10 @@ echo "Resource package directory: $RESOURCE_PACKAGE_DIR"
 mkdir -p $RESOURCE_PACKAGE_DIR $RESOURCE_PACKAGE_DIR/usr/share/certificates
 mkdir -p $RESOURCE_PACKAGE_DIR $RESOURCE_PACKAGE_DIR/usr/share/oipf
 
-if [ -z "$(find "$RESOURCE_PACKAGE_DIR/usr/share/certificates" -maxdepth 1 -type f -print -quit)" ]; then
-    cp -r $META_ROOT/deps/certificates $RESOURCE_PACKAGE_DIR/usr/share/
-    echo "Copied certificates"
-fi
+rm -rf "$RESOURCE_PACKAGE_DIR/usr/share/certificates"
+cp -r "$META_ROOT/deps/certificates" "$RESOURCE_PACKAGE_DIR/usr/share/"
+echo "Copied certificates"
+
 cp $META_ROOT/deps/oipf-bbc/dist/stb/oipf-bbc.js $META_ROOT/deps/oipf-bbc/dist/stb/oipf-bbc.css $RESOURCE_PACKAGE_DIR/usr/share/oipf/
 echo "Copied oipf related dependencies"
 

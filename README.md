@@ -45,7 +45,7 @@ Fetch dependencies to build the bolt package
 
 Copy the BBC certificates(private and public key) to deps/certificates directory
 
-Update the appropriate <userAgent> and certificate (<bbc-iplayer-cert.pem>, <bbc-iplayer-key.pem>, <bbc-isounds-cert.pem> and <bbc-isounds-key.pem>) in the package-configs/com.rdkcentral.bbc-iplayer.json and package-configs/com.rdkcentral.bbc-sounds.json
+Update the appropriate `<userAgent>` and certificate placeholders (`<bbc-iplayer-cert.pem>`, `<bbc-iplayer-key.pem>`, `<bbc-isounds-cert.pem>` and `<bbc-isounds-key.pem>`) in `package-configs/com.rdkcentral.bbc-iplayer.json` and `package-configs/com.rdkcentral.bbc-sounds.json`.
 
 Build the resource package (which contains certificates and oipf related js runtime files)
 ```
