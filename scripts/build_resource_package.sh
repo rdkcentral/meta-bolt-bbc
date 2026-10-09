@@ -16,39 +16,39 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-#!/bin/bash
-if [ $# -ne 1 ]; then
-    echo "Usage: $0 <platform>"
-    echo "<platform> shall be brcm-ref"
+set -e
+if [ $# -ne 1 ] || [ "$1" != "brcm-ref" ]; then
+    echo "Usage: $0 brcm-ref"
     exit 1
 fi
+
 SCRIPTS_DIR=$(readlink -m "$(dirname "${BASH_SOURCE[0]}")")
 META_ROOT="$(dirname "$SCRIPTS_DIR")"
 CERTS_DIR="${META_ROOT}/deps/bolt-engineering-certificates"
 PACKAGE_DIR="$HOME/bolts"
 
 # Create directories to store BBC iPlayer and BBC Sounds related files
-RESOURCE_PACKAGE="${META_ROOT}/deps/com.rdkcentral.bbc.resource.$1"
-echo "Resource package directory: $RESOURCE_PACKAGE"
-mkdir -p $RESOURCE_PACKAGE $RESOURCE_PACKAGE/usr/share/certificates
-mkdir -p $RESOURCE_PACKAGE $RESOURCE_PACKAGE/usr/share/oipf
+RESOURCE_PACKAGE_DIR="${META_ROOT}/deps/com.rdkcentral.bbc.resource.$1"
+echo "Resource package directory: $RESOURCE_PACKAGE_DIR"
+mkdir -p $RESOURCE_PACKAGE_DIR $RESOURCE_PACKAGE_DIR/usr/share/certificates
+mkdir -p $RESOURCE_PACKAGE_DIR $RESOURCE_PACKAGE_DIR/usr/share/oipf
 
-if [ -z "$(find "$RESOURCE_PACKAGE/usr/share/certificates" -maxdepth 1 -type f -print -quit)" ]; then
-    cp -r $META_ROOT/deps/certificates $RESOURCE_PACKAGE/usr/share/
+if [ -z "$(find "$RESOURCE_PACKAGE_DIR/usr/share/certificates" -maxdepth 1 -type f -print -quit)" ]; then
+    cp -r $META_ROOT/deps/certificates $RESOURCE_PACKAGE_DIR/usr/share/
     echo "Copied certificates"
 fi
-cp $META_ROOT/deps/oipf-bbc/dist/stb/oipf-bbc.js $META_ROOT/deps/oipf-bbc/dist/stb/oipf-bbc.css $RESOURCE_PACKAGE/usr/share/oipf/
+cp $META_ROOT/deps/oipf-bbc/dist/stb/oipf-bbc.js $META_ROOT/deps/oipf-bbc/dist/stb/oipf-bbc.css $RESOURCE_PACKAGE_DIR/usr/share/oipf/
 echo "Copied oipf related dependencies"
 
 APP_ID="com.rdkcentral.bbc.resource.$1"
-TARBALL="${RESOURCE_PACKAGE}/${APP_ID}.tgz"
+TARBALL="${RESOURCE_PACKAGE_DIR}/${APP_ID}.tgz"
 APPLICATION_MANIFEST="${META_ROOT}/package-configs/${APP_ID}.json"
 
 echo "Tarball: $TARBALL"
 echo "Application manifest: $APPLICATION_MANIFEST"
-tar -czf "$TARBALL" -C $RESOURCE_PACKAGE usr
+tar -czf "$TARBALL" -C $RESOURCE_PACKAGE_DIR usr
 
-cd $RESOURCE_PACKAGE
+cd $RESOURCE_PACKAGE_DIR
 bolt pack $APPLICATION_MANIFEST $TARBALL
 BOLT_FILE=$(ls *.bolt 2>/dev/null | grep -v '_signed' | head -1)
 if [ -z "$BOLT_FILE" ]; then

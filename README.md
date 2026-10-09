@@ -49,7 +49,7 @@ Update the appropriate <userAgent> and certificate (<bbc-iplayer-cert.pem>, <bbc
 
 Build the resource package (which contains certificates and oipf related js runtime files)
 ```
-./scripts/build_resource_package.sh
+./scripts/build_resource_package.sh brcm-ref
 ```
 
 Build the bolt package
@@ -63,10 +63,10 @@ Build the bolt package
 To run bolt packages on device, use `bolt push` and `bolt run` as explained in [bolt tool usage](https://github.com/rdkcentral/bolt-tools/tree/main/bolt#usage)
 
 ```
-bolt push <remote> com.rdkcentral.base+0.3.1.bolt
-bolt push <remote> com.rdkcentral.bbc.resource.brcm-ref+0.3.1.bolt
-bolt push <remote> com.rdkcentral.wpe-bbc+0.4.2.bolt
-bolt push <remote> com.rdkcentral.bbc-iplayer+0.4.2.bolt
+bolt push <remote> com.rdkcentral.base+0.4.0.bolt
+bolt push <remote> com.rdkcentral.bbc.resource.brcm-ref+0.4.0.bolt
+bolt push <remote> com.rdkcentral.wpe-bbc+0.5.0.bolt
+bolt push <remote> com.rdkcentral.bbc-iplayer+0.5.0.bolt
 
-bolt run <remote> com.rdkcentral.bbc-iplayer+0.4.2.bolt
+bolt run <remote> com.rdkcentral.bbc-iplayer+0.5.0.bolt
 ```

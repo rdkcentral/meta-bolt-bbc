@@ -16,7 +16,7 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-#!/bin/bash
+set -e
 if [ $# -ne 1 ]; then
     echo "Usage: $0 <APP_ID>"
     echo "APP_ID shall be bbc-sounds or bbc-iplayer"
@@ -35,11 +35,11 @@ CERTS_DIR="${META_ROOT}/deps/bolt-engineering-certificates"
 
 # Create directories to store BBC iPlayer and BBC Sounds related files
 APP_DIR="${META_ROOT}/deps/com.rdkcentral.$1"
-mkdir $APP_DIR
+mkdir -p $APP_DIR
 echo "Application directory : $APP_DIR created."
 
 APP_ID="com.rdkcentral.$1"
-APPLICATION_MANIFEST="${META_ROOT}/package-configs/${APP_ID}.bolt.json"
+APPLICATION_MANIFEST="${META_ROOT}/package-configs/${1}.bolt.json"
 
 echo "Application manifest: $APPLICATION_MANIFEST"
 

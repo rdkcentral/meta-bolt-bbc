@@ -25,8 +25,8 @@ BASE_DIR=$(dirname "${BASH_SOURCE[0]}")
 BASE_DIR=$(readlink -m "${BASE_DIR}")
 MANIFEST="${BASE_DIR}/manifests/deps.xml"
 
-mkdir -p deps
-pushd $_
+mkdir -p "${BASE_DIR}/deps"
+pushd "${BASE_DIR}/deps"
 repo init --standalone-manifest --manifest-url="file://${MANIFEST}" ${BOLT_REPO_INIT_PARAMS}
 repo sync ${BOLT_REPO_SYNC_PARAMS}
 popd
