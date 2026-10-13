@@ -1,0 +1,6 @@
+{
+  "config": "com.rdkcentral.wpe-bbc.json",
+  "bitbake": {
+    "image": "wpe-rdk-bolt-image"
+  }
+}
